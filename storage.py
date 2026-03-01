@@ -1,7 +1,7 @@
 import csv
 from pathlib import Path
 
-HEADER = ['serial','0.8','1.4','4.9','5.3','5.5','5.9','date iso']
+HEADER = ['serial','0.8','1.4','4.9','5.3','5.5','5.9','date ']
 
 DATA_DIR = Path(r"C:\amperage_dir")
 FILE_PATH = DATA_DIR / "AMPERAGE.csv"

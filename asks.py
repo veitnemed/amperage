@@ -27,17 +27,15 @@ def ask_serial_number() -> str:
         ser = input('>> ')
         if valid.is_correct_serial(ser):
             
-            
             return ser
         continue
 
 def ask_value() -> str:
     ui.print_seporator()
-    print('Введите потребляемый ток джмара:')
+    print('-- Введите потребляемый ток джамеров --')
     print('Значение должно быть от 0 до 6 мА (нап. 2.5)\n')
     vals = []
     for freq in FREQS:
-        
         while True:
             val = input(f'Введите ток джаммера {freq} >> ')
             if valid.is_cooret_value(val):
@@ -74,16 +72,20 @@ def get_csv_row():
 def is_next_step():
     print()
     while True:
-        ans = input('Продолжить? (да/нет) >> ')
-        if ans.lower() == 'да':
+        print('Продолжить?')
+        print('enter - да')
+        print('space + enter - нет')
+        ans = input('>> ')
+        if ans.lower() == '':
             return True
-        elif ans.lower() == 'нет':
+        elif ans.lower() == ' ':
             return False
         else:
             print('Некорректный ввод')
             continue
     
-    
+
+
 
 
 

@@ -1,13 +1,26 @@
 import ui
 import storage
 import asks
+import locale
+import analytics as anl
 
+def show_rows(func):
+    data = storage.get_data()
+    format_data = anl.format_for_print_data(data)
+    ui.show_all_rows(func(format_data))
+    
+
+def local_time():
+    try:
+       locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
+    except:
+        pass 
 
 def main_loop():
-    next_step = False
-    
+    local_time()
     storage.ensure_file()
     ui.clean_terminal()
+    
     while True:
         ui.show_tittle()
         ui.show_post_tittlee()
@@ -26,4 +39,6 @@ def main_loop():
     
 
 if __name__ == '__main__':
-    main_loop()
+    local_time()
+    show_rows(anl.sorted_tottal)
+    
