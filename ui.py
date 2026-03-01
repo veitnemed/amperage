@@ -93,7 +93,8 @@ def show_all_rows(rows: list) -> None:
             print(empts(1)+amp+emptsep(3),end='')
         print(empts(2)+tottal+emptsep(3), end='')
         print(empts(1)+dt+emptsep(2))
-    print(SEPORATOR)    
+    print(SEPORATOR)
+   
         
 
         

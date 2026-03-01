@@ -4,11 +4,19 @@ import asks
 import locale
 import analytics as anl
 
-def show_rows(func):
+def show_rows():
     data = storage.get_data()
     format_data = anl.format_for_print_data(data)
-    ui.show_all_rows(func(format_data))
-    
+    ui.show_all_rows(format_data)
+    medians = anl.get_median(data)
+    tit, f1, f2, f3, f4, f5, f6, f = medians
+    print(f'  {tit}     | {f1}   | {f2}   | {f3}   | {f4}   | {f5}   | {f6}   |  {f}   | -------- |  ')
+    means = anl.get_mean(data)
+    print('==========================================================================================|')
+    tit, f1, f2, f3, f4, f5, f6, f = means
+    print(f'  {tit}     | {f1}   | {f2}   | {f3}   | {f4}   | {f5}   | {f6}   |  {f}   | -------- |  ')
+
+
 
 def local_time():
     try:
@@ -39,6 +47,5 @@ def main_loop():
     
 
 if __name__ == '__main__':
-    local_time()
-    show_rows(anl.sorted_tottal)
+    show_rows()
     
