@@ -7,4 +7,6 @@ def clean_terminal():
 def print_emty_rows(n: int) -> None:
     '''Печатает n пустых строк'''
     print('\n'*n)
+
+
     
