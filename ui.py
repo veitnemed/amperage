@@ -29,16 +29,16 @@ def empts(n: int) -> str:
 
 def print_seporator():
         '''Печататет:
-        
         ===============================
-        
         '''
-        print_emty_rows(0)
         print('='*72)
-        print_emty_rows(0)
+
 
 # === START ==== 
-
+def show_main_menu():
+    print('\n', SEPORATOR, '\n')
+    print('1. Показать статистику')
+    print('2. Добавить данные об ССБ 115')
 def show_tittle():
     '''Выводим название программы'''
     print_seporator()

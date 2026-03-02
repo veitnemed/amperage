@@ -32,8 +32,8 @@ def ask_serial_number() -> str:
 
 def ask_value() -> str:
     ui.print_seporator()
-    print('-- Введите потребляемый ток джамеров --')
-    print('Значение должно быть от 0 до 6 мА (нап. 2.5)\n')
+    print('-- Введите потребляемый пэпэ джамеров --')
+    print('Значение шнейне должно быть от 0 до 6 мА (нап. 2.5)\n')
     vals = []
     for freq in FREQS:
         while True:
@@ -61,7 +61,7 @@ def get_csv_row():
     code = ask_serial_number()
     serial_number = code_to_full_serial(code)
     pyperclip.copy(serial_number)
-    print(f'№ {serial_number} СКОПИРОВАН!')
+    print(f'№ {serial_number} СКОПИРОВАН! Ватафо')
     time.sleep(2)
     ui.clean_terminal()
     print(f'                       Значения токов для панели № {serial_number}')
@@ -83,6 +83,16 @@ def is_next_step():
         else:
             print('Некорректный ввод')
             continue
+
+def ask_main_menu():
+
+    while True:
+        ask = input('>> ')
+        if ask.lower() not in ('1','2'):
+            print('Некорреткный ввод')
+            continue
+        return ask
+        
     
 
 
