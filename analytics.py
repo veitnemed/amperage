@@ -30,7 +30,12 @@ def sorted_tottal(format_rows):
 
 def get_median(rows):
     freq800, freq1400, freq4900, freq5300, freq5500, freq5900 = [], [], [], [], [], []
+
     for line in rows:
+        # защита от пустых/битых строк
+        if len(line) < 8:
+            continue
+
         ser, f8, f14, f49, f53, f55, f59, d = line
         freq800.append(float(f8))
         freq1400.append(float(f14))
@@ -38,27 +43,42 @@ def get_median(rows):
         freq5300.append(float(f53))
         freq5500.append(float(f55))
         freq5900.append(float(f59))
+
     lenth = len(freq800)
     medians = ['Медиана:']
-    tottal = 0
+    tottal = 0.0
+
+    # если данных нет (на всякий случай)
+    if lenth == 0:
+        medians += ['0'] * 6
+        medians.append('0')
+        return medians
+
     for line in (freq800, freq1400, freq4900, freq5300, freq5500, freq5900):
         s = sorted(line)
+        mid = lenth // 2
+
         if lenth % 2 == 0:
-            idx = int(lenth/2)
-            med_val = (s[idx] + s[idx+1])/2
+            # n=2 -> mid=1 -> берем s[0] и s[1] (OK)
+            med_val = (s[mid - 1] + s[mid]) / 2
         else:
-            idx = int((lenth+1)/2)
-            med_val = s[idx]
+            # n=1 -> mid=0 -> берем s[0] (OK)
+            med_val = s[mid]
+
         tottal += med_val
-        t = str(round(med_val,3)).rjust(4)
-        medians.append(t)
-    medians.append(str(round(tottal,3)).rjust(4))
+        medians.append(str(round(med_val, 3)).rjust(4))
+
+    medians.append(str(round(tottal, 3)).rjust(4))
     return medians
 
+
 def get_mean(rows):
-    tottal = 0
+    tottal = 0.0
     freq800, freq1400, freq4900, freq5300, freq5500, freq5900 = [], [], [], [], [], []
+
     for line in rows:
+        if len(line) < 8:
+            continue
         ser, f8, f14, f49, f53, f55, f59, d = line
         freq800.append(float(f8))
         freq1400.append(float(f14))
@@ -66,17 +86,22 @@ def get_mean(rows):
         freq5300.append(float(f53))
         freq5500.append(float(f55))
         freq5900.append(float(f59))
+
     lenth = len(freq800)
     means = ['Среднее:']
 
-    for line in (freq800, freq1400, freq4900, freq5300, freq5500, freq5900):
-        s = sum(line)/lenth
-        tottal += s
-        t = str(round(s,3)).rjust(4)
-        means.append(t)
-    means.append(str(round(tottal,3)).rjust(4))
-    return means
+    if lenth == 0:
+        means += ['0'] * 6
+        means.append('0')
+        return means
 
+    for line in (freq800, freq1400, freq4900, freq5300, freq5500, freq5900):
+        s = sum(line) / lenth
+        tottal += s
+        means.append(str(round(s, 3)).rjust(4))
+
+    means.append(str(round(tottal, 3)).rjust(4))
+    return means
 
             
         
